@@ -15,23 +15,62 @@ package vinnsla;
         C. get og set aðferðir fyrir gögnin eins og á þarf að halda */
 
 
-import java.util.Random;
+import javafx.beans.property.BooleanProperty;
 
 public class Pipa {
 
-    private int logun;
+    private final String logun;
+    private String[] innUt;
+    private BooleanProperty opin;
 
-    public Pipa(){
-        Random r = new Random();
-        this.logun = r.nextInt(5);
-    }
-    public boolean flaedir (Pipa s){
-        boolean b = false;
-        return b;
+    public enum Att {V, N, A, S}
+
+    private Att inn;
+    private Att ut;
+    // private final String[] gerdir = {"NV", "NA", "SV", "SA", "NS", "VA"};
+
+    // GETTERS AND SETTERS
+
+    public boolean isOpin() {
+        return opin.get();
     }
 
-    public int getLogun() {
+    public BooleanProperty opinProperty() {
+        return opin;
+    }
+
+    public void setOpin(boolean opin) {
+        this.opin.set(opin);
+    }
+
+    public String getLogun() {
         return logun;
     }
-}
 
+    /**
+     * Smiður fyrir pípu
+     * @param x úr hvaða átt flæðir inn í pípuna
+     * @param y úr hvaða átt flæðir út úr pípunni
+     */
+    public Pipa(Att x, Att y) {
+        this.inn = x;
+        this.ut = y;
+        this.logun = x.toString() + y.toString();
+    }
+
+    /**
+     * Athugar hvort flæðir í gegnum pípuna sem er gefin og skilar Boolean gildi
+     * @param s Pípan
+     * @return
+     */
+    public boolean flaedir(Pipa s) {
+        if ((ut.ordinal() + 2) % 4 == s.inn.ordinal()) return true;
+        else if ((ut.ordinal() + 2) % 4 == s.ut.ordinal()) {
+            Att tmp = s.ut;
+            s.ut = s.inn;
+            s.inn = tmp;
+            return true;
+        }
+        return false;
+    }
+}

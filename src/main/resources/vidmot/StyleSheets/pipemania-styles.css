@@ -1,0 +1,50 @@
+.root {
+   -fx-background-image: url("myndir/background.png");
+}
+
+.grid {
+}
+
+/* BUTTONS */
+
+.water {
+    -fx-background-image: url("myndir/water.png");
+}
+.empty{
+    -fx-background-image: url("myndir/empty_block.png");
+    -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center center;
+    -fx-background-size: 126 115;
+}
+
+.start {
+    -fx-background-image: url("myndir/start_block.png");
+}
+.SV {
+    -fx-background-image: url("myndir/bottomleft_block.png");
+}
+.NV {
+    -fx-background-image: url("myndir/topleft_block.png");
+}
+.SA {
+    -fx-background-image: url("myndir/topleft_block.png");
+}
+.NA {
+    -fx-background-image: url("myndir/topright_block.png");
+}
+.NV {
+    -fx-background-image: url("myndir/topleft_block.png");
+}
+.NS {
+    -fx-background-image: url("myndir/vert_block.png");
+}
+.VA {
+    -fx-background-image: url("myndir/hori_block.png");
+}
+
+.flaedir{
+
+}
+
+

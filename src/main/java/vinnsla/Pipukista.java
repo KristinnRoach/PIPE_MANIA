@@ -1,31 +1,40 @@
 package vinnsla;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.layout.VBox;
+import vinnsla.Pipa.Att;
 
 import java.util.Random;
 
 public class Pipukista {
-    private final ObservableList<Pipa> kista = FXCollections.observableArrayList();
 
+    private final ObservableList<Pipa> kista = FXCollections.observableArrayList();
+    public ObservableList<Pipa> getListKista() {
+        return kista;
+    }
     public Pipukista(int fjoldi) {
         for (int i = 0; i < fjoldi; i++){
             this.kista.add(nyPipa());
         }
     }
-    private Pipa nyPipa(){   // afhverju ekki bara nota smiðinn í Pipa klasanum?
-        Pipa rndPipa = new Pipa();
+    // kallar á Pipu smiðinn með random lögun og bætir henni í kistuna
+    private Pipa nyPipa(){
+        Random r = new Random();
+        int x = r.nextInt(4);
+        int y = r.nextInt(4);
+        while (x == y) y = r.nextInt(4);
+        Pipa rndPipa = new Pipa(Att.values()[x], Att.values()[y]);
+        kista.add(rndPipa);
         return rndPipa;
     }
-    public Pipa naestaPipa(){  // EFTIR AÐ GERa
-        return this.kista.get(0);
+
+
+    public Pipa naestaPipa(){
+        Pipa nextPipe = this.kista.get(0);
+        kista.remove(0);
+        kista.add(3, nyPipa());
+        return nextPipe;
     }
-
-   /* public void usePipe(){
-        for(int i=0; i < kista.size()-1; i++){
-            this.kista.set(i, this.kista.get(i + 1));
-
-        }
-    } */
 
 }
 
